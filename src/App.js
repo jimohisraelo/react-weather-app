@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [city, setCity] = useState("Delhi");
+  const [city, setCity] = useState("Lagos");
   const [weatherData, setWeatherData] = useState(null);
   const [lastValidWeatherData, setLastValidWeatherData] = useState(null);
 
