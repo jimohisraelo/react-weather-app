@@ -15,7 +15,7 @@ function App() {
   const year = currentDate.getFullYear();
   const formattedDate = `${month} ${day}, ${year}`;
 
-  const API_KEY = "bcda10ba323e88e96cb486015a104d1d";
+  const API_KEY = "a48aa1b45be39e210016b47445c0f998";
 
   const fetchWeatherData = async () => {
     try {
