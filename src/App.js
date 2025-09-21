@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [city, setCity] = useState("Delhi");
+  const [city, setCity] = useState("Lagos");
   const [weatherData, setWeatherData] = useState(null);
   const [lastValidWeatherData, setLastValidWeatherData] = useState(null);
 
@@ -15,7 +15,7 @@ function App() {
   const year = currentDate.getFullYear();
   const formattedDate = `${month} ${day}, ${year}`;
 
-  const API_KEY = "bcda10ba323e88e96cb486015a104d1d";
+  const API_KEY = "70557accd19cb25471551e03ab68e072";
 
   const fetchWeatherData = async () => {
     try {
@@ -25,7 +25,7 @@ function App() {
       const data = await response.json();
 
       if (data.cod !== 200) {
-        alert(`City "${city}" not found.`);
+        alert(`City ${city} not found in the database.`);
         setWeatherData(null);
       } else {
         setWeatherData(data);
@@ -51,21 +51,25 @@ function App() {
   };
 
   const getWeatherIconUrl = (main) => {
-    switch (main) {
-      case "Clouds":
-        return "/thunder.png";
-      case "Rain":
-        return "/rain_with_cloud.png";
-      case "Mist":
-        return "/Tornado.png";
-      case "Haze":
-        return "/sun.png";
-      default:
-        return "/default-weather-icon.png";
-    }
-  };
+  const base = process.env.PUBLIC_URL + "/";
+  switch (main) {
+    case "Clouds":
+      return base + "thunder.png";
+    case "Rain":
+      return base + "rain_with_cloud.png";
+    case "Mist":
+      return base + "Tornado.png";
+    case "Haze":
+      return base + "sun.png";
+    default:
+      return base + "default-weather-icon.png";
+  }
+};
+
 
   const displayData = weatherData || lastValidWeatherData;
+  
+  
 
   return (
     <div className="App">
@@ -74,6 +78,7 @@ function App() {
           <>
             <h1 className="container_date">{formattedDate}</h1>
             <div className="weather_data">
+              
               <h2 className="container_city">{displayData.name}</h2>
               <img
                 className="container_img"
